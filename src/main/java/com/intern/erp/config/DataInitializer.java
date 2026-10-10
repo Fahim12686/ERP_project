@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -483,35 +484,54 @@ public class DataInitializer implements CommandLineRunner {
     }
 
     private void initializeUsers() {
-        System.out.println("👤 Seeding user accounts...");
-        UserAccount admin = new UserAccount();
-        admin.setId(sequenceGeneratorService.getSequenceNumber(UserAccount.class.getSimpleName()));
-        admin.setUsername("admin");
-        admin.setEmail("admin@erp.com");
-        admin.setPassword(passwordEncoder.encode(System.getenv().getOrDefault("DEMO_ADMIN_PASSWORD", "admin123")));
-        admin.setRoles(List.of("ADMIN"));
-        admin.setEnabled(true);
-
-        UserAccount hr = new UserAccount();
-        hr.setId(sequenceGeneratorService.getSequenceNumber(UserAccount.class.getSimpleName()));
-        hr.setUsername("hr");
-        hr.setEmail("hr@company.com");
-        hr.setPassword(passwordEncoder.encode("demo123"));
-        hr.setRoles(List.of("HR"));
-        hr.setEnabled(true);
-
-        UserAccount finance = new UserAccount();
-        finance.setId(sequenceGeneratorService.getSequenceNumber(UserAccount.class.getSimpleName()));
-        finance.setUsername("finance");
-        finance.setEmail("finance@company.com");
-        finance.setPassword(passwordEncoder.encode("demo123"));
-        finance.setRoles(List.of("FINANCE"));
-        finance.setEnabled(true);
-
-
-
-        userAccountRepository.saveAll(Arrays.asList(admin, hr, finance));
-        System.out.println("✅ Seeded demo user accounts. Change demo passwords before production use.");
+        System.out.println("👤 Seeding/Updating user accounts...");
+        
+        // Define demo accounts
+        String[][] demoAccounts = {
+            {"admin", "admin@company.com", "ADMIN"},
+            {"hr", "hr@company.com", "HR"},
+            {"finance", "finance@company.com", "FINANCE"}
+        };
+        
+        String demoPassword = "demo123";
+        String encodedPassword = passwordEncoder.encode(demoPassword);
+        
+        for (String[] account : demoAccounts) {
+            String username = account[0];
+            String email = account[1];
+            String role = account[2];
+            
+            // Check if user exists by email or username
+            Optional<UserAccount> existingUser = userAccountRepository.findByEmail(email);
+            if (existingUser.isEmpty()) {
+                existingUser = userAccountRepository.findByUsername(username);
+            }
+            
+            if (existingUser.isPresent()) {
+                // Update existing user to ensure correct credentials
+                UserAccount user = existingUser.get();
+                user.setUsername(username);
+                user.setEmail(email);
+                user.setPassword(encodedPassword);
+                user.setRoles(List.of(role));
+                user.setEnabled(true);
+                userAccountRepository.save(user);
+                System.out.println("✅ Updated existing demo account: " + email);
+            } else {
+                // Create new user
+                UserAccount newUser = new UserAccount();
+                newUser.setId(sequenceGeneratorService.getSequenceNumber(UserAccount.class.getSimpleName()));
+                newUser.setUsername(username);
+                newUser.setEmail(email);
+                newUser.setPassword(encodedPassword);
+                newUser.setRoles(List.of(role));
+                newUser.setEnabled(true);
+                userAccountRepository.save(newUser);
+                System.out.println("✅ Created new demo account: " + email);
+            }
+        }
+        
+        System.out.println("✅ Demo user accounts seeded/updated successfully.");
     }
 
     private void initializeAdditionalFinanceData(List<Account> accounts) {

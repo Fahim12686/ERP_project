@@ -3,7 +3,7 @@
 ## Before deploying
 - Rotate any MongoDB Atlas or SMTP credentials that were ever committed to Git. Never commit secrets.
 - Create an Atlas database user, allow network access from Render (for a demo you may temporarily use `0.0.0.0/0`; restrict it for production), and copy the `mongodb+srv://...` URI.
-- The existing `DataInitializer` seeds the application when its core collections are empty. It creates `admin@erp.com`; default demo password is `admin123`. Set `DEMO_ADMIN_PASSWORD` to a unique secret before first deploy. Do not expose this demo account publicly in a real production system.
+- The existing `DataInitializer` seeds the application when its core collections are empty. It creates three demo accounts: `admin@company.com`, `hr@company.com`, and `finance@company.com`; default demo password is `demo123`. Set `DEMO_ADMIN_PASSWORD` to a unique secret before first deploy. Do not expose these demo accounts publicly in a real production system.
 
 ## Backend Web Service
 - Render > New > Web Service; connect the repository; choose **Docker**; root directory `/` (repository root).

@@ -127,8 +127,8 @@ Before running this application, make sure you have:
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/Harsha430/ERP.git
-cd ERP
+git clone https://github.com/Fahim12686/ERP_project.git
+cd ERP_project
 ```
 
 ### 2. Backend Setup
@@ -171,18 +171,18 @@ The frontend will start on `http://localhost:5173`
 The system comes with pre-configured user accounts:
 
 ### Admin User
-- **Username**: `admin@erp.com`
-- **Password**: `admin123`
+- **Email**: `admin@company.com`
+- **Password**: `demo123`
 - **Role**: Administrator
 
 ### HR User
-- **Username**: `hr@erp.com`
-- **Password**: `hr123`
+- **Email**: `hr@company.com`
+- **Password**: `demo123`
 - **Role**: HR Manager
 
 ### Finance User
-- **Username**: `finance@erp.com`
-- **Password**: `finance123`
+- **Email**: `finance@company.com`
+- **Password**: `demo123`
 - **Role**: Finance Manager
 
 ## 📁 Project Structure
@@ -401,9 +401,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👨‍💻 Authors
 
-- **Harsha** - [Harsha430](https://github.com/Harsha430)
-- **Deepak** - [deepakbusa](https://github.com/deepakbusa)
-- **Pavani** - [Pavanisagi](https://github.com/Pavanisagi)
+- **Fahim** - [Fahim12686](https://github.com/Fahim12686)
 
 
 ## 🙏 Acknowledgments
@@ -418,7 +416,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 If you have any questions or need help with setup, please:
 
-1. Check the [Issues](https://github.com/Harsha430/ERP/issues) page
+1. Check the [Issues](https://github.com/Fahim12686/ERP_project/issues) page
 2. Create a new issue with detailed description
 3. Contact the maintainers
 
