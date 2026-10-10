@@ -79,17 +79,20 @@ public class DataInitializer implements CommandLineRunner {
         System.out.println("🚀 Starting Data Initialization check...");
 
         // Idempotency guard: if any core collection already has data, skip seeding
+        // Note: userAccountRepository is excluded so demo accounts are always updated/created
         boolean alreadySeeded = departmentRepository.count() > 0
                 || accountRepository.count() > 0
-                || userAccountRepository.count() > 0
                 || employeeRepository.count() > 0;
 
         if (alreadySeeded) {
-            System.out.println("ℹ️ Existing data detected (skipping seeding). Set environment variable ERP_SEED_FORCE=1 to force reseed.");
+            System.out.println("ℹ️ Existing data detected (skipping business data seeding). Set environment variable ERP_SEED_FORCE=1 to force reseed.");
             // Optional force reseed flag
             String force = System.getenv("ERP_SEED_FORCE");
             if (force == null || !force.equals("1")) {
-                return; // Do nothing - keep existing data
+                // Always initialize/update demo users even if business data exists
+                initializeUsers();
+                System.out.println("✅ Demo users initialized/updated. Business data seeding skipped.");
+                return; // Skip business data seeding but return after updating users
             }
             System.out.println("⚠️ Force seeding enabled. Clearing existing data...");
             clearExistingData();
