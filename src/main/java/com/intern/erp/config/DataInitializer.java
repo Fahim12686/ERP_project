@@ -222,7 +222,7 @@ public class DataInitializer implements CommandLineRunner {
             createEmployee("EMP013", "Rafiq", "Haque", "rafiq.haque@company.com", "+880-1911123456", departments.get(0).getId(), positions.get(0).getId(), "EMP001", new BigDecimal("4500"), EmployeeType.PART_TIME, EmployeeStatus.ACTIVE, "2023-01-10"),
             createEmployee("EMP014", "Rehana", "Khatun", "rehana.khatun@company.com", "+880-1311123456", departments.get(4).getId(), positions.get(9).getId(), null, new BigDecimal("5800"), EmployeeType.CONTRACT, EmployeeStatus.ACTIVE, "2023-03-15"),
             createEmployee("EMP015", "Imran", "Hossain", "imran.hossain@company.com", "+880-1111123456", departments.get(0).getId(), positions.get(0).getId(), "EMP003", new BigDecimal("3500"), EmployeeType.INTERN, EmployeeStatus.ACTIVE, "2023-06-01"),
-         createEmployee("EMP016", "Fahim", "Islam", "99220040214@klu.ac.in", "+880-6302313370", departments.get(0).getId(), positions.get(0).getId(), "EMP003", new BigDecimal("3500"), EmployeeType.INTERN, EmployeeStatus.ACTIVE, "2023-06-01"),
+         createEmployee("EMP016", "Fahim", "Islam", "fahim.islam@company.com", "+880-1911123457", departments.get(0).getId(), positions.get(0).getId(), "EMP003", new BigDecimal("3500"), EmployeeType.INTERN, EmployeeStatus.ACTIVE, "2023-06-01"),
 
         };
         

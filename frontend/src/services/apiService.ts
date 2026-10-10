@@ -261,11 +261,11 @@ export const adminService = {
   getStatus: () => apiRequest<string>('/admin/status'),
 };
 
-// Utility function to format currency in INR
+// Utility function to format currency in USD
 export const formatCurrency = (amount: number): string => {
-  return new Intl.NumberFormat('en-IN', {
+  return new Intl.NumberFormat('en-US', {
     style: 'currency',
-    currency: 'INR',
+    currency: 'USD',
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   }).format(amount);
