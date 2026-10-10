@@ -162,27 +162,27 @@ public class DataInitializer implements CommandLineRunner {
         
         Position[] positions = {
             // Engineering
-            new Position(null, "Software Engineer", "Develops software applications", departments.get(0).getId(), new BigDecimal("500000"), new BigDecimal("1000000"), true, LocalDateTime.now(), LocalDateTime.now()),
-            new Position(null, "Senior Software Engineer", "Senior developer with leadership responsibilities", departments.get(0).getId(), new BigDecimal("800000"), new BigDecimal("1500000"), true, LocalDateTime.now(), LocalDateTime.now()),
-            new Position(null, "Engineering Manager", "Manages engineering team and projects", departments.get(0).getId(), new BigDecimal("1200000"), new BigDecimal("2000000"), true, LocalDateTime.now(), LocalDateTime.now()),
+            new Position(null, "Software Engineer", "Develops software applications", departments.get(0).getId(), new BigDecimal("5000"), new BigDecimal("10000"), true, LocalDateTime.now(), LocalDateTime.now()),
+            new Position(null, "Senior Software Engineer", "Senior developer with leadership responsibilities", departments.get(0).getId(), new BigDecimal("8000"), new BigDecimal("15000"), true, LocalDateTime.now(), LocalDateTime.now()),
+            new Position(null, "Engineering Manager", "Manages engineering team and projects", departments.get(0).getId(), new BigDecimal("12000"), new BigDecimal("20000"), true, LocalDateTime.now(), LocalDateTime.now()),
             
             // HR
-            new Position(null, "HR Specialist", "Handles recruitment and employee relations", departments.get(1).getId(), new BigDecimal("400000"), new BigDecimal("700000"), true, LocalDateTime.now(), LocalDateTime.now()),
-            new Position(null, "HR Manager", "Manages HR operations and policies", departments.get(1).getId(), new BigDecimal("800000"), new BigDecimal("1200000"), true, LocalDateTime.now(), LocalDateTime.now()),
+            new Position(null, "HR Specialist", "Handles recruitment and employee relations", departments.get(1).getId(), new BigDecimal("4000"), new BigDecimal("7000"), true, LocalDateTime.now(), LocalDateTime.now()),
+            new Position(null, "HR Manager", "Manages HR operations and policies", departments.get(1).getId(), new BigDecimal("8000"), new BigDecimal("12000"), true, LocalDateTime.now(), LocalDateTime.now()),
             
             // Finance
-            new Position(null, "Accountant", "Manages financial records and transactions", departments.get(2).getId(), new BigDecimal("450000"), new BigDecimal("800000"), true, LocalDateTime.now(), LocalDateTime.now()),
-            new Position(null, "Finance Manager", "Oversees financial operations", departments.get(2).getId(), new BigDecimal("900000"), new BigDecimal("1400000"), true, LocalDateTime.now(), LocalDateTime.now()),
+            new Position(null, "Accountant", "Manages financial records and transactions", departments.get(2).getId(), new BigDecimal("4500"), new BigDecimal("8000"), true, LocalDateTime.now(), LocalDateTime.now()),
+            new Position(null, "Finance Manager", "Oversees financial operations", departments.get(2).getId(), new BigDecimal("9000"), new BigDecimal("14000"), true, LocalDateTime.now(), LocalDateTime.now()),
             
             // Sales
-            new Position(null, "Sales Executive", "Handles client relationships and sales", departments.get(3).getId(), new BigDecimal("350000"), new BigDecimal("700000"), true, LocalDateTime.now(), LocalDateTime.now()),
-            new Position(null, "Sales Manager", "Manages sales team and strategies", departments.get(3).getId(), new BigDecimal("700000"), new BigDecimal("1300000"), true, LocalDateTime.now(), LocalDateTime.now()),
+            new Position(null, "Sales Executive", "Handles client relationships and sales", departments.get(3).getId(), new BigDecimal("3500"), new BigDecimal("7000"), true, LocalDateTime.now(), LocalDateTime.now()),
+            new Position(null, "Sales Manager", "Manages sales team and strategies", departments.get(3).getId(), new BigDecimal("7000"), new BigDecimal("13000"), true, LocalDateTime.now(), LocalDateTime.now()),
             
             // Marketing
-            new Position(null, "Marketing Specialist", "Executes marketing campaigns", departments.get(4).getId(), new BigDecimal("400000"), new BigDecimal("800000"), true, LocalDateTime.now(), LocalDateTime.now()),
+            new Position(null, "Marketing Specialist", "Executes marketing campaigns", departments.get(4).getId(), new BigDecimal("4000"), new BigDecimal("8000"), true, LocalDateTime.now(), LocalDateTime.now()),
             
             // Operations
-            new Position(null, "Operations Analyst", "Analyzes and improves operations", departments.get(5).getId(), new BigDecimal("500000"), new BigDecimal("900000"), true, LocalDateTime.now(), LocalDateTime.now())
+            new Position(null, "Operations Analyst", "Analyzes and improves operations", departments.get(5).getId(), new BigDecimal("5000"), new BigDecimal("9000"), true, LocalDateTime.now(), LocalDateTime.now())
         };
         
         List<Position> savedPositions = positionRepository.saveAll(Arrays.asList(positions));
@@ -195,46 +195,46 @@ public class DataInitializer implements CommandLineRunner {
         
         Employee[] employeeData = {
             // Engineering Team
-            createEmployee("EMP001", "Rajesh", "Kumar", "rajesh.kumar@company.com", "+91-9876543101", departments.get(0).getId(), positions.get(1).getId(), null, new BigDecimal("950000"), EmployeeType.FULL_TIME, EmployeeStatus.ACTIVE, "2022-01-15"),
-            createEmployee("EMP002", "Priya", "Sharma", "priya.sharma@company.com", "+91-9876543102", departments.get(0).getId(), positions.get(0).getId(), null, new BigDecimal("750000"), EmployeeType.FULL_TIME, EmployeeStatus.ACTIVE, "2022-03-20"),
-            createEmployee("EMP003", "Amit", "Singh", "amit.singh@company.com", "+91-9876543103", departments.get(0).getId(), positions.get(2).getId(), null, new BigDecimal("1400000"), EmployeeType.FULL_TIME, EmployeeStatus.ACTIVE, "2021-11-10"),
-            createEmployee("EMP004", "Sneha", "Patel", "sneha.patel@company.com", "+91-9876543104", departments.get(0).getId(), positions.get(0).getId(), "EMP003", new BigDecimal("720000"), EmployeeType.FULL_TIME, EmployeeStatus.ACTIVE, "2023-02-14"),
+            createEmployee("EMP001", "Rahim", "Ahmed", "rahim.ahmed@company.com", "+880-1712345678", departments.get(0).getId(), positions.get(1).getId(), null, new BigDecimal("9500"), EmployeeType.FULL_TIME, EmployeeStatus.ACTIVE, "2022-01-15"),
+            createEmployee("EMP002", "Fatima", "Begum", "fatima.begum@company.com", "+880-1812345678", departments.get(0).getId(), positions.get(0).getId(), null, new BigDecimal("7500"), EmployeeType.FULL_TIME, EmployeeStatus.ACTIVE, "2022-03-20"),
+            createEmployee("EMP003", "Karim", "Hossain", "karim.hossain@company.com", "+880-1912345678", departments.get(0).getId(), positions.get(2).getId(), null, new BigDecimal("14000"), EmployeeType.FULL_TIME, EmployeeStatus.ACTIVE, "2021-11-10"),
+            createEmployee("EMP004", "Ayesha", "Khan", "ayesha.khan@company.com", "+880-1612345678", departments.get(0).getId(), positions.get(0).getId(), "EMP003", new BigDecimal("7200"), EmployeeType.FULL_TIME, EmployeeStatus.ACTIVE, "2023-02-14"),
             
             // HR Team
-            createEmployee("EMP005", "Vikram", "Reddy", "vikram.reddy@company.com", "+91-9876543105", departments.get(1).getId(), positions.get(4).getId(), null, new BigDecimal("950000"), EmployeeType.FULL_TIME, EmployeeStatus.ACTIVE, "2021-08-22"),
-            createEmployee("EMP006", "Kavya", "Nair", "kavya.nair@company.com", "+91-9876543106", departments.get(1).getId(), positions.get(3).getId(), "EMP005", new BigDecimal("580000"), EmployeeType.FULL_TIME, EmployeeStatus.ACTIVE, "2022-06-15"),
+            createEmployee("EMP005", "Jamal", "Uddin", "jamal.uddin@company.com", "+880-1512345678", departments.get(1).getId(), positions.get(4).getId(), null, new BigDecimal("9500"), EmployeeType.FULL_TIME, EmployeeStatus.ACTIVE, "2021-08-22"),
+            createEmployee("EMP006", "Nasreen", "Akter", "nasreen.akter@company.com", "+880-1312345678", departments.get(1).getId(), positions.get(3).getId(), "EMP005", new BigDecimal("5800"), EmployeeType.FULL_TIME, EmployeeStatus.ACTIVE, "2022-06-15"),
             
             // Finance Team
-            createEmployee("EMP007", "Arjun", "Gupta", "arjun.gupta@company.com", "+91-9876543107", departments.get(2).getId(), positions.get(6).getId(), null, new BigDecimal("1200000"), EmployeeType.FULL_TIME, EmployeeStatus.ACTIVE, "2021-09-30"),
-            createEmployee("EMP008", "Meera", "Joshi", "meera.joshi@company.com", "+91-9876543108", departments.get(2).getId(), positions.get(5).getId(), "EMP007", new BigDecimal("650000"), EmployeeType.FULL_TIME, EmployeeStatus.ACTIVE, "2022-11-08"),
+            createEmployee("EMP007", "Habib", "Rahman", "habib.rahman@company.com", "+880-1112345678", departments.get(2).getId(), positions.get(6).getId(), null, new BigDecimal("12000"), EmployeeType.FULL_TIME, EmployeeStatus.ACTIVE, "2021-09-30"),
+            createEmployee("EMP008", "Rashida", "Begum", "rashida.begum@company.com", "+880-1212345678", departments.get(2).getId(), positions.get(5).getId(), "EMP007", new BigDecimal("6500"), EmployeeType.FULL_TIME, EmployeeStatus.ACTIVE, "2022-11-08"),
             
             // Sales Team
-            createEmployee("EMP009", "Rahul", "Verma", "rahul.verma@company.com", "+91-9876543109", departments.get(3).getId(), positions.get(8).getId(), null, new BigDecimal("880000"), EmployeeType.FULL_TIME, EmployeeStatus.ACTIVE, "2022-01-03"),
-            createEmployee("EMP010", "Anita", "Desai", "anita.desai@company.com", "+91-9876543110", departments.get(3).getId(), positions.get(7).getId(), "EMP009", new BigDecimal("520000"), EmployeeType.FULL_TIME, EmployeeStatus.ACTIVE, "2022-07-19"),
+            createEmployee("EMP009", "Tanvir", "Islam", "tanvir.islam@company.com", "+880-1811123456", departments.get(3).getId(), positions.get(8).getId(), null, new BigDecimal("8800"), EmployeeType.FULL_TIME, EmployeeStatus.ACTIVE, "2022-01-03"),
+            createEmployee("EMP010", "Shamima", "Parveen", "shamima.parveen@company.com", "+880-1711123456", departments.get(3).getId(), positions.get(7).getId(), "EMP009", new BigDecimal("5200"), EmployeeType.FULL_TIME, EmployeeStatus.ACTIVE, "2022-07-19"),
             
             // Marketing Team
-            createEmployee("EMP011", "Suresh", "Iyer", "suresh.iyer@company.com", "+91-9876543111", departments.get(4).getId(), positions.get(9).getId(), null, new BigDecimal("620000"), EmployeeType.FULL_TIME, EmployeeStatus.ACTIVE, "2022-04-12"),
+            createEmployee("EMP011", "Sohel", "Miah", "sohel.miah@company.com", "+880-1611123456", departments.get(4).getId(), positions.get(9).getId(), null, new BigDecimal("6200"), EmployeeType.FULL_TIME, EmployeeStatus.ACTIVE, "2022-04-12"),
             
             // Operations Team
-            createEmployee("EMP012", "Divya", "Kulkarni", "divya.kulkarni@company.com", "+91-9876543112", departments.get(5).getId(), positions.get(10).getId(), null, new BigDecimal("750000"), EmployeeType.FULL_TIME, EmployeeStatus.ACTIVE, "2022-05-28"),
+            createEmployee("EMP012", "Tahmina", "Sultana", "tahmina.sultana@company.com", "+880-1511123456", departments.get(5).getId(), positions.get(10).getId(), null, new BigDecimal("7500"), EmployeeType.FULL_TIME, EmployeeStatus.ACTIVE, "2022-05-28"),
             
             // Part-time and Contract employees
-            createEmployee("EMP013", "Karan", "Malhotra", "karan.malhotra@company.com", "+91-9876543113", departments.get(0).getId(), positions.get(0).getId(), "EMP001", new BigDecimal("450000"), EmployeeType.PART_TIME, EmployeeStatus.ACTIVE, "2023-01-10"),
-            createEmployee("EMP014", "Ritu", "Agarwal", "ritu.agarwal@company.com", "+91-9876543114", departments.get(4).getId(), positions.get(9).getId(), null, new BigDecimal("580000"), EmployeeType.CONTRACT, EmployeeStatus.ACTIVE, "2023-03-15"),
-            createEmployee("EMP015", "Deepak", "Rao", "deepak.rao@company.com", "+91-9876543115", departments.get(0).getId(), positions.get(0).getId(), "EMP003", new BigDecimal("350000"), EmployeeType.INTERN, EmployeeStatus.ACTIVE, "2023-06-01"),
-         createEmployee("EMP016", "Harshasri", "Karthikeya", "99220040214@klu.ac.in", "+91-6302313370", departments.get(0).getId(), positions.get(0).getId(), "EMP003", new BigDecimal("350000"), EmployeeType.INTERN, EmployeeStatus.ACTIVE, "2023-06-01"),
+            createEmployee("EMP013", "Rafiq", "Haque", "rafiq.haque@company.com", "+880-1911123456", departments.get(0).getId(), positions.get(0).getId(), "EMP001", new BigDecimal("4500"), EmployeeType.PART_TIME, EmployeeStatus.ACTIVE, "2023-01-10"),
+            createEmployee("EMP014", "Rehana", "Khatun", "rehana.khatun@company.com", "+880-1311123456", departments.get(4).getId(), positions.get(9).getId(), null, new BigDecimal("5800"), EmployeeType.CONTRACT, EmployeeStatus.ACTIVE, "2023-03-15"),
+            createEmployee("EMP015", "Imran", "Hossain", "imran.hossain@company.com", "+880-1111123456", departments.get(0).getId(), positions.get(0).getId(), "EMP003", new BigDecimal("3500"), EmployeeType.INTERN, EmployeeStatus.ACTIVE, "2023-06-01"),
+         createEmployee("EMP016", "Fahim", "Islam", "99220040214@klu.ac.in", "+880-6302313370", departments.get(0).getId(), positions.get(0).getId(), "EMP003", new BigDecimal("3500"), EmployeeType.INTERN, EmployeeStatus.ACTIVE, "2023-06-01"),
 
         };
         
         List<Employee> employees = employeeRepository.saveAll(Arrays.asList(employeeData));
         
         // Update department heads
-        departments.get(0).setHeadEmployeeId(employees.get(2).getId()); // Amit Singh - Engineering Manager
-        departments.get(1).setHeadEmployeeId(employees.get(4).getId()); // Vikram Reddy - HR Manager
-        departments.get(2).setHeadEmployeeId(employees.get(6).getId()); // Arjun Gupta - Finance Manager
-        departments.get(3).setHeadEmployeeId(employees.get(8).getId()); // Rahul Verma - Sales Manager
-        departments.get(4).setHeadEmployeeId(employees.get(10).getId()); // Suresh Iyer - Marketing Specialist
-        departments.get(5).setHeadEmployeeId(employees.get(11).getId()); // Divya Kulkarni - Operations Analyst
+        departments.get(0).setHeadEmployeeId(employees.get(2).getId()); // Karim Hossain - Engineering Manager
+        departments.get(1).setHeadEmployeeId(employees.get(4).getId()); // Jamal Uddin - HR Manager
+        departments.get(2).setHeadEmployeeId(employees.get(6).getId()); // Habib Rahman - Finance Manager
+        departments.get(3).setHeadEmployeeId(employees.get(8).getId()); // Tanvir Islam - Sales Manager
+        departments.get(4).setHeadEmployeeId(employees.get(10).getId()); // Sohel Miah - Marketing Specialist
+        departments.get(5).setHeadEmployeeId(employees.get(11).getId()); // Tahmina Sultana - Operations Analyst
         
         departmentRepository.saveAll(departments);
         
@@ -261,7 +261,7 @@ public class DataInitializer implements CommandLineRunner {
         emp.setEmployeeType(type);
         emp.setStatus(status);
         emp.setEmergencyContactName(firstName + " Family");
-        emp.setEmergencyContactPhone("+1-555-" + String.format("%04d", random.nextInt(10000)));
+        emp.setEmergencyContactPhone("+880-" + String.format("%010d", random.nextInt(1000000000)));
         emp.setBankAccountNumber("ACC" + String.format("%08d", random.nextInt(100000000)));
         emp.setTaxId("TAX" + String.format("%09d", random.nextInt(1000000000)));
         emp.setCreatedAt(LocalDateTime.now());
@@ -420,14 +420,14 @@ public class DataInitializer implements CommandLineRunner {
         Account travelAccount = accounts.stream().filter(a -> a.getName().equals("Travel Expense")).findFirst().orElse(null);
         Account suppliesAccount = accounts.stream().filter(a -> a.getName().equals("Office Supplies")).findFirst().orElse(null);
         Expense[] expenses = {
-            createExpense("Office Rent - September 2025", "Monthly office space rental", new BigDecimal("250000.00"), ExpenseCategory.RENT, rentAccount, cashAccount, PaymentStatus.PAID, LocalDate.of(2025, 9, 1)),
-            createExpense("Office Rent - August 2025", "Monthly office space rental", new BigDecimal("250000.00"), ExpenseCategory.RENT, rentAccount, cashAccount, PaymentStatus.PAID, LocalDate.of(2025, 8, 1)),
-            createExpense("Electricity Bill - August", "Monthly electricity bill", new BigDecimal("45000.00"), ExpenseCategory.UTILITIES, utilitiesAccount, cashAccount, PaymentStatus.PAID, LocalDate.of(2025, 8, 15)),
-            createExpense("Internet & Phone Services", "Monthly communication services", new BigDecimal("25000.00"), ExpenseCategory.UTILITIES, utilitiesAccount, cashAccount, PaymentStatus.PAID, LocalDate.of(2025, 9, 5)),
-            createExpense("Business Travel - Client Meeting", "Travel expenses for client presentation", new BigDecimal("85000.00"), ExpenseCategory.TRAVEL, travelAccount, cashAccount, PaymentStatus.PENDING, LocalDate.of(2025, 9, 10)),
-            createExpense("Office Supplies - Stationery", "Monthly office supplies purchase", new BigDecimal("18000.00"), ExpenseCategory.OTHER, suppliesAccount, cashAccount, PaymentStatus.PAID, LocalDate.of(2025, 9, 12)),
-            createExpense("Software Licenses", "Annual software licensing fees", new BigDecimal("150000.00"), ExpenseCategory.OTHER, suppliesAccount, cashAccount, PaymentStatus.PENDING, LocalDate.of(2025, 9, 8)),
-            createExpense("Team Lunch - Project Completion", "Team celebration lunch", new BigDecimal("12000.00"), ExpenseCategory.OTHER, suppliesAccount, cashAccount, PaymentStatus.PAID, LocalDate.of(2025, 9, 13)),
+            createExpense("Office Rent - September 2025", "Monthly office space rental", new BigDecimal("2500.00"), ExpenseCategory.RENT, rentAccount, cashAccount, PaymentStatus.PAID, LocalDate.of(2025, 9, 1)),
+            createExpense("Office Rent - August 2025", "Monthly office space rental", new BigDecimal("2500.00"), ExpenseCategory.RENT, rentAccount, cashAccount, PaymentStatus.PAID, LocalDate.of(2025, 8, 1)),
+            createExpense("Electricity Bill - August", "Monthly electricity bill", new BigDecimal("450.00"), ExpenseCategory.UTILITIES, utilitiesAccount, cashAccount, PaymentStatus.PAID, LocalDate.of(2025, 8, 15)),
+            createExpense("Internet & Phone Services", "Monthly communication services", new BigDecimal("250.00"), ExpenseCategory.UTILITIES, utilitiesAccount, cashAccount, PaymentStatus.PAID, LocalDate.of(2025, 9, 5)),
+            createExpense("Business Travel - Client Meeting", "Travel expenses for client presentation", new BigDecimal("850.00"), ExpenseCategory.TRAVEL, travelAccount, cashAccount, PaymentStatus.PENDING, LocalDate.of(2025, 9, 10)),
+            createExpense("Office Supplies - Stationery", "Monthly office supplies purchase", new BigDecimal("180.00"), ExpenseCategory.OTHER, suppliesAccount, cashAccount, PaymentStatus.PAID, LocalDate.of(2025, 9, 12)),
+            createExpense("Software Licenses", "Annual software licensing fees", new BigDecimal("1500.00"), ExpenseCategory.OTHER, suppliesAccount, cashAccount, PaymentStatus.PENDING, LocalDate.of(2025, 9, 8)),
+            createExpense("Team Lunch - Project Completion", "Team celebration lunch", new BigDecimal("120.00"), ExpenseCategory.OTHER, suppliesAccount, cashAccount, PaymentStatus.PAID, LocalDate.of(2025, 9, 13)),
         };
         for (Expense e : expenses) {
             if (e.getId() == null) {
@@ -447,12 +447,12 @@ public class DataInitializer implements CommandLineRunner {
         Account serviceRevenueAccount = accounts.stream().filter(a -> a.getName().equals("Service Revenue")).findFirst().orElse(null);
         Account consultingRevenueAccount = accounts.stream().filter(a -> a.getName().equals("Consulting Revenue")).findFirst().orElse(null);
         Invoice[] invoices = {
-            createInvoice("INV-2025-001", "TechCorp Solutions", "finance@techcorp.com", new BigDecimal("750000.00"), new BigDecimal("135000.00"), receivableAccount, serviceRevenueAccount, PaymentStatus.PAID, LocalDate.of(2025, 8, 15), LocalDate.of(2025, 9, 14)),
-            createInvoice("INV-2025-002", "Global Industries Ltd", "accounting@global-ind.com", new BigDecimal("1125000.00"), new BigDecimal("202500.00"), receivableAccount, consultingRevenueAccount, PaymentStatus.PAID, LocalDate.of(2025, 8, 20), LocalDate.of(2025, 9, 19)),
-            createInvoice("INV-2025-003", "StartUp Innovations", "payments@startup-inn.com", new BigDecimal("437500.00"), new BigDecimal("78750.00"), receivableAccount, serviceRevenueAccount, PaymentStatus.PENDING, LocalDate.of(2025, 9, 1), LocalDate.of(2025, 10, 1)),
-            createInvoice("INV-2025-004", "Enterprise Systems Co", "billing@enterprise-sys.com", new BigDecimal("910000.00"), new BigDecimal("163800.00"), receivableAccount, consultingRevenueAccount, PaymentStatus.PENDING, LocalDate.of(2025, 9, 5), LocalDate.of(2025, 10, 5)),
-            createInvoice("INV-2025-005", "Digital Marketing Pro", "finance@digimkt.com", new BigDecimal("630000.00"), new BigDecimal("113400.00"), receivableAccount, serviceRevenueAccount, PaymentStatus.PAID, LocalDate.of(2025, 9, 10), LocalDate.of(2025, 10, 10)),
-            createInvoice("INV-2025-006", "Healthcare Solutions", "accounts@healthsol.com", new BigDecimal("1365000.00"), new BigDecimal("245700.00"), receivableAccount, consultingRevenueAccount, PaymentStatus.PENDING, LocalDate.of(2025, 9, 12), LocalDate.of(2025, 10, 12)),
+            createInvoice("INV-2025-001", "TechCorp Solutions", "finance@techcorp.com", new BigDecimal("7500.00"), new BigDecimal("1350.00"), receivableAccount, serviceRevenueAccount, PaymentStatus.PAID, LocalDate.of(2025, 8, 15), LocalDate.of(2025, 9, 14)),
+            createInvoice("INV-2025-002", "Global Industries Ltd", "accounting@global-ind.com", new BigDecimal("11250.00"), new BigDecimal("2025.00"), receivableAccount, consultingRevenueAccount, PaymentStatus.PAID, LocalDate.of(2025, 8, 20), LocalDate.of(2025, 9, 19)),
+            createInvoice("INV-2025-003", "StartUp Innovations", "payments@startup-inn.com", new BigDecimal("4375.00"), new BigDecimal("787.50"), receivableAccount, serviceRevenueAccount, PaymentStatus.PENDING, LocalDate.of(2025, 9, 1), LocalDate.of(2025, 10, 1)),
+            createInvoice("INV-2025-004", "Enterprise Systems Co", "billing@enterprise-sys.com", new BigDecimal("9100.00"), new BigDecimal("1638.00"), receivableAccount, consultingRevenueAccount, PaymentStatus.PENDING, LocalDate.of(2025, 9, 5), LocalDate.of(2025, 10, 5)),
+            createInvoice("INV-2025-005", "Digital Marketing Pro", "finance@digimkt.com", new BigDecimal("6300.00"), new BigDecimal("1134.00"), receivableAccount, serviceRevenueAccount, PaymentStatus.PAID, LocalDate.of(2025, 9, 10), LocalDate.of(2025, 10, 10)),
+            createInvoice("INV-2025-006", "Healthcare Solutions", "accounts@healthsol.com", new BigDecimal("13650.00"), new BigDecimal("2457.00"), receivableAccount, consultingRevenueAccount, PaymentStatus.PENDING, LocalDate.of(2025, 9, 12), LocalDate.of(2025, 10, 12)),
         };
         for (Invoice i : invoices) {
             if (i.getId() == null) {
@@ -642,19 +642,19 @@ public class DataInitializer implements CommandLineRunner {
     }
 
     private String generateRandomAddress() {
-        String[] streets = {"MG Road", "Brigade Road", "Commercial Street", "Residency Road", "Cunningham Road", "Richmond Road", "Kasturba Road", "Lavelle Road", "Church Street", "Infantry Road"};
-        String[] areas = {"Koramangala", "Indiranagar", "Jayanagar", "Malleshwaram", "Rajajinagar", "Whitefield", "Electronic City", "HSR Layout", "BTM Layout", "JP Nagar"};
-        String[] cities = {"Bangalore", "Mumbai", "Delhi", "Chennai", "Hyderabad", "Pune", "Kolkata", "Ahmedabad", "Kochi", "Jaipur"};
-        String[] states = {"Karnataka", "Maharashtra", "Delhi", "Tamil Nadu", "Telangana", "Maharashtra", "West Bengal", "Gujarat", "Kerala", "Rajasthan"};
+        String[] streets = {"Gulshan Avenue", "Banani Road", "Dhanmondi Road", "Uttara Main Road", "Mirpur Road", "Baridhara Road", "Bashundhara Road", "Mohakhali Road", "Tejgaon Road", "Farmgate Road"};
+        String[] areas = {"Gulshan", "Banani", "Dhanmondi", "Uttara", "Mirpur", "Baridhara", "Bashundhara", "Mohakhali", "Tejgaon", "Farmgate"};
+        String[] cities = {"Dhaka", "Chittagong", "Sylhet", "Rajshahi", "Khulna", "Barisal", "Rangpur", "Comilla", "Gazipur", "Narayanganj"};
+        String[] divisions = {"Dhaka Division", "Chittagong Division", "Sylhet Division", "Rajshahi Division", "Khulna Division", "Barisal Division", "Rangpur Division", "Chittagong Division", "Dhaka Division", "Dhaka Division"};
         
         int number = 10 + random.nextInt(990);
         String street = streets[random.nextInt(streets.length)];
         String area = areas[random.nextInt(areas.length)];
         String city = cities[random.nextInt(cities.length)];
-        String state = states[random.nextInt(states.length)];
-        int pincode = 100001 + random.nextInt(799999);
+        String division = divisions[random.nextInt(divisions.length)];
+        int pincode = 1000 + random.nextInt(8999);
         
-        return number + ", " + street + ", " + area + ", " + city + ", " + state + " - " + pincode;
+        return number + ", " + street + ", " + area + ", " + city + ", " + division + " - " + pincode;
     }
 
     private Expense createExpense(String title, String description, BigDecimal amount, ExpenseCategory category,
