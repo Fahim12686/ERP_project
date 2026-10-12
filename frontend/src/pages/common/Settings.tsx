@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Separator } from '@/components/ui/separator';
 import { useAuth } from '@/contexts/AuthContext';
+import { useTheme } from '@/contexts/ThemeContext';
 import { 
   Settings as SettingsIcon, 
   Moon, 
@@ -28,12 +29,13 @@ import { useToast } from '@/components/ui/use-toast';
 export default function Settings() {
   const { user } = useAuth();
   const { toast } = useToast();
+  const { theme, setTheme } = useTheme();
   
   const [settings, setSettings] = useState({
     // Appearance
-    theme: 'system',
+    theme: theme || 'system',
     language: 'english',
-    timezone: 'asia/kolkata',
+    timezone: 'Asia/Dhaka',
     
     // Notifications
     emailNotifications: true,
@@ -52,20 +54,64 @@ export default function Settings() {
     analyticsOptIn: true,
   });
 
+  // Sync theme with next-themes
+  useEffect(() => {
+    if (theme) {
+      setSettings(prev => ({ ...prev, theme }));
+    }
+  }, [theme]);
+
   const handleSettingChange = (category: string, setting: string, value: any) => {
     setSettings(prev => ({
       ...prev,
       [setting]: value
     }));
+
+    // Apply theme change immediately
+    if (setting === 'theme') {
+      setTheme(value);
+    }
   };
 
-  const handleSaveSettings = () => {
-    // Here you would typically make an API call to save settings
-    toast({
-      title: "Settings Saved",
-      description: "Your preferences have been updated successfully.",
-    });
+  const handleSaveSettings = async () => {
+    try {
+      // Save to localStorage for persistence
+      localStorage.setItem('erp_settings', JSON.stringify(settings));
+      
+      // Save theme preference
+      if (settings.theme) {
+        setTheme(settings.theme);
+      }
+
+      toast({
+        title: "Settings Saved",
+        description: "Your preferences have been updated successfully.",
+      });
+    } catch (error) {
+      console.error('Failed to save settings:', error);
+      toast({
+        title: "Error",
+        description: "Failed to save settings. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
+
+  // Load settings from localStorage on mount
+  useEffect(() => {
+    const savedSettings = localStorage.getItem('erp_settings');
+    if (savedSettings) {
+      try {
+        const parsed = JSON.parse(savedSettings);
+        setSettings(prev => ({ ...prev, ...parsed }));
+        if (parsed.theme) {
+          setTheme(parsed.theme);
+        }
+      } catch (error) {
+        console.error('Failed to load saved settings:', error);
+      }
+    }
+  }, []);
 
   return (
     <div className="space-y-6">
@@ -182,9 +228,9 @@ export default function Settings() {
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="asia/kolkata">Asia/Kolkata</SelectItem>
-                        <SelectItem value="asia/mumbai">Asia/Mumbai</SelectItem>
-                        <SelectItem value="asia/delhi">Asia/Delhi</SelectItem>
+                        <SelectItem value="Asia/Dhaka">Asia/Dhaka</SelectItem>
+                        <SelectItem value="Asia/Kolkata">Asia/Kolkata</SelectItem>
+                        <SelectItem value="UTC">UTC</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>

@@ -244,7 +244,7 @@ export default function Budgeting() {
               </div>
               <div className="grid grid-cols-3 gap-4">
                 <div className="space-y-2">
-                  <Label>Planned Amount (₹) *</Label>
+                  <Label>Planned Amount (USD) *</Label>
                   <Input 
                     type="number" 
                     value={form.plannedAmount} 
@@ -397,7 +397,7 @@ export default function Budgeting() {
                     cx="50%"
                     cy="50%"
                     labelLine={false}
-                    label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                    label={(entry: any) => `${entry.name} ${(entry.percent * 100).toFixed(0)}%`}
                     outerRadius={80}
                     fill="#8884d8"
                     dataKey="value"

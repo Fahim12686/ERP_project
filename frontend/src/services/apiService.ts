@@ -273,12 +273,12 @@ export const formatCurrency = (amount: number): string => {
 
 // Utility function to format date
 export const formatDate = (dateString: string): string => {
-  return new Date(dateString).toLocaleDateString('en-IN');
+  return new Date(dateString).toLocaleDateString('en-US', { timeZone: 'Asia/Dhaka' });
 };
 
 // Utility function to format datetime
 export const formatDateTime = (dateString: string): string => {
-  return new Date(dateString).toLocaleString('en-IN');
+  return new Date(dateString).toLocaleString('en-US', { timeZone: 'Asia/Dhaka' });
 };
 
 // Default export for backward compatibility
