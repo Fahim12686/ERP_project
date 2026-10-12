@@ -1,0 +1,158 @@
+package com.intern.erp.finance.service.impl;
+
+import com.intern.erp.finance.model.Account;
+import com.intern.erp.finance.model.JournalEntry;
+import com.intern.erp.finance.model.PayrollLedgerEntry;
+import com.intern.erp.finance.model.PayrollEntry;
+import com.intern.erp.finance.model.enums.AccountType;
+import com.intern.erp.finance.model.enums.EntrySource;
+import com.intern.erp.finance.model.enums.PaymentStatus;
+import com.intern.erp.finance.repository.AccountRepository;
+import com.intern.erp.finance.repository.JournalEntryRepository;
+import com.intern.erp.finance.repository.PayrollLedgerEntryRepository;
+import com.intern.erp.finance.repository.PayrollEntryRepository;
+import com.intern.erp.finance.service.PayrollService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
+
+@Service
+@RequiredArgsConstructor
+@Slf4j
+public class PayrollServiceImpl implements PayrollService {
+    
+    private final PayrollEntryRepository payrollEntryRepository;
+    private final JournalEntryRepository journalEntryRepository;
+    private final PayrollLedgerEntryRepository payrollLedgerEntryRepository;
+    private final AccountRepository accountRepository;
+    
+    @Override
+    @Transactional
+    public PayrollEntry recordPayroll(PayrollEntry payrollEntry) {
+        log.info("Recording payroll entry for employee: {}", payrollEntry.getEmployeeName());
+        
+        // Set default status if not provided
+        if (payrollEntry.getStatus() == null) {
+            payrollEntry.setStatus(PaymentStatus.PENDING);
+        }
+        
+        // Set pay date if not provided
+        if (payrollEntry.getPayDate() == null) {
+            payrollEntry.setPayDate(LocalDate.now());
+        }
+        
+        PayrollEntry savedEntry = payrollEntryRepository.save(payrollEntry);
+        log.info("Payroll entry recorded with ID: {}", savedEntry.getId());
+        
+        return savedEntry;
+    }
+    
+    @Override
+    public List<PayrollEntry> getAllPayrollEntries() {
+        return payrollEntryRepository.findAll();
+    }
+    
+    @Override
+    @Transactional
+    public void postPayrollToLedger(Long payrollEntryId) {
+        log.info("Posting payroll to ledger for payroll entry ID: {}", payrollEntryId);
+        
+        PayrollEntry payrollEntry = payrollEntryRepository.findById(payrollEntryId)
+            .orElseThrow(() -> new RuntimeException("Payroll entry not found: " + payrollEntryId));
+        
+        // Get or create accounts
+        Account salaryExpenseAccount = getOrCreateAccount("Salary Expense", AccountType.EXPENSE);
+        Account bankAccount = getOrCreateAccount("Bank Account", AccountType.ASSET);
+        
+        // Create Journal Entry
+        JournalEntry journalEntry = new JournalEntry();
+        journalEntry.setEntryDate(payrollEntry.getPayDate());
+        journalEntry.setNarration("Salary payment for " + payrollEntry.getEmployeeName() + " - " + payrollEntry.getPayDate());
+        journalEntry.setDebitAccountId(salaryExpenseAccount);  // Debit: Salary Expense
+        journalEntry.setCreditAccountId(bankAccount);          // Credit: Bank Account
+        journalEntry.setAmount(payrollEntry.getNetSalary());
+        journalEntry.setSource(EntrySource.PAYROLL);
+        
+        JournalEntry savedJournalEntry = journalEntryRepository.save(journalEntry);
+        
+        // Create corresponding ledger entries
+        createLedgerEntries(savedJournalEntry);
+        
+        // Update payroll entry status
+        payrollEntry.setStatus(PaymentStatus.PAID);
+        payrollEntryRepository.save(payrollEntry);
+        
+        log.info("Payroll posted to ledger successfully. Journal Entry ID: {}", savedJournalEntry.getId());
+    }
+    
+    private void createLedgerEntries(JournalEntry journalEntry) {
+        // Create debit ledger entry (Salary Expense)
+        PayrollLedgerEntry debitEntry = new PayrollLedgerEntry();
+        debitEntry.setAccountId(journalEntry.getDebitAccountId().getId());
+        debitEntry.setEntryDate(journalEntry.getEntryDate());
+        debitEntry.setNarration(journalEntry.getNarration());
+        debitEntry.setDebitAmount(journalEntry.getAmount());
+        debitEntry.setCreditAmount(null);
+        debitEntry.setJournalEntryId(journalEntry.getId());
+        payrollLedgerEntryRepository.save(debitEntry);
+        
+        // Create credit ledger entry (Bank Account)
+        PayrollLedgerEntry creditEntry = new PayrollLedgerEntry();
+        creditEntry.setAccountId(journalEntry.getCreditAccountId().getId());
+        creditEntry.setEntryDate(journalEntry.getEntryDate());
+        creditEntry.setNarration(journalEntry.getNarration());
+        creditEntry.setDebitAmount(null);
+        creditEntry.setCreditAmount(journalEntry.getAmount());
+        creditEntry.setJournalEntryId(journalEntry.getId());
+        payrollLedgerEntryRepository.save(creditEntry);
+        
+        log.info("Payroll ledger entries created for journal entry: {}", journalEntry.getId());
+    }
+    
+    private Account getOrCreateAccount(String accountName, AccountType accountType) {
+        Optional<Account> existingAccount = accountRepository.findByName(accountName);
+        
+        if (existingAccount.isPresent()) {
+            return existingAccount.get();
+        }
+        
+        // Create new account
+        Account newAccount = new Account();
+        newAccount.setName(accountName);
+        newAccount.setType(accountType);
+        newAccount.setDescription("Auto-created account for payroll processing");
+        newAccount.setIsActive(true);
+        
+        Account savedAccount = accountRepository.save(newAccount);
+        log.info("Created new account: {} with type: {}", accountName, accountType);
+        
+        return savedAccount;
+    }
+    
+    public List<PayrollEntry> getPayrollEntriesByStatus(PaymentStatus status) {
+        return payrollEntryRepository.findByStatus(status);
+    }
+    
+    public Optional<PayrollEntry> getPayrollEntryById(Long id) {
+        return payrollEntryRepository.findById(id);
+    }
+    
+    @Transactional
+    public PayrollEntry markPayrollAsPaid(Long payrollEntryId) {
+        PayrollEntry payrollEntry = payrollEntryRepository.findById(payrollEntryId)
+            .orElseThrow(() -> new RuntimeException("Payroll entry not found: " + payrollEntryId));
+        
+        payrollEntry.setStatus(PaymentStatus.PAID);
+        PayrollEntry savedEntry = payrollEntryRepository.save(payrollEntry);
+        
+        // Post to ledger
+        postPayrollToLedger(payrollEntryId);
+        
+        return savedEntry;
+    }
+}
