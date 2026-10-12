@@ -410,7 +410,7 @@ export default function Payroll() {
                     {payrollStats.paidCount} paid, {payrollStats.generatedCount} generated
                   </p>
                 </div>
-                <IndianRupee className="h-8 w-8 text-red-500" />
+                <DollarSign className="h-8 w-8 text-red-500" />
               </div>
             </CardContent>
           </Card>
@@ -558,7 +558,7 @@ export default function Payroll() {
         <DialogContent className="sm:max-w-[600px]">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
-              <IndianRupee className="h-5 w-5 text-purple-500" />
+              <DollarSign className="h-5 w-5 text-purple-500" />
               Payslip - {selectedPayslip?.employeeName || selectedPayslip?.employeeCode}
             </DialogTitle>
           </DialogHeader>

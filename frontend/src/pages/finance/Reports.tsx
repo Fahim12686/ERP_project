@@ -9,7 +9,7 @@ import { Input } from '@/components/ui/input';
 import { useToast } from '@/components/ui/use-toast';
 import { exportToCSV } from '@/lib/exportUtil';
 
-interface ReportRow { amount: number; date: string; status?: string; invoiceNumber?: string; title?: string; category?: string; }
+interface ReportRow { amount: number; date: string; status?: string; invoiceNumber?: string; title?: string; category?: string; customerName?: string; }
 
 export default function Reports() {
   const { toast } = useToast();

@@ -41,14 +41,14 @@ import Profile from "./pages/common/Profile";
 import Settings from "./pages/common/Settings";
 
 import NotFound from "./pages/NotFound";
-import { useAuth } from './contexts/AuthContext';
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <AuthProvider>
-      <TooltipProvider>
+    <ThemeProvider>
+      <AuthProvider>
+        <TooltipProvider>
         <Toaster />
         <Sonner />
         <BrowserRouter>
