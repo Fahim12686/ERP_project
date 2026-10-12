@@ -98,34 +98,34 @@ public class PayrollIntegrationService {
         emailBody.append("───────────────────────────────────────────────────────────\n");
         emailBody.append("                         EARNINGS                           \n");
         emailBody.append("───────────────────────────────────────────────────────────\n");
-        emailBody.append(String.format("%-30s %15s\n", "Basic Salary", "₹" + formatAmount(payslip.getBasicSalary())));
-        emailBody.append(String.format("%-30s %15s\n", "House Rent Allowance", "₹" + formatAmount(payslip.getHouseRentAllowance())));
-        emailBody.append(String.format("%-30s %15s\n", "Transport Allowance", "₹" + formatAmount(payslip.getTransportAllowance())));
-        emailBody.append(String.format("%-30s %15s\n", "Medical Allowance", "₹" + formatAmount(payslip.getMedicalAllowance())));
+        emailBody.append(String.format("%-30s %15s\n", "Basic Salary", "$" + formatAmount(payslip.getBasicSalary())));
+        emailBody.append(String.format("%-30s %15s\n", "House Rent Allowance", "$" + formatAmount(payslip.getHouseRentAllowance())));
+        emailBody.append(String.format("%-30s %15s\n", "Transport Allowance", "$" + formatAmount(payslip.getTransportAllowance())));
+        emailBody.append(String.format("%-30s %15s\n", "Medical Allowance", "$" + formatAmount(payslip.getMedicalAllowance())));
         if (payslip.getOtherAllowances().compareTo(java.math.BigDecimal.ZERO) > 0) {
-            emailBody.append(String.format("%-30s %15s\n", "Other Allowances", "₹" + formatAmount(payslip.getOtherAllowances())));
+            emailBody.append(String.format("%-30s %15s\n", "Other Allowances", "$" + formatAmount(payslip.getOtherAllowances())));
         }
         emailBody.append("                                               ───────────\n");
-        emailBody.append(String.format("%-30s %15s\n", "GROSS SALARY", "₹" + formatAmount(payslip.getGrossSalary())));
+        emailBody.append(String.format("%-30s %15s\n", "GROSS SALARY", "$" + formatAmount(payslip.getGrossSalary())));
         emailBody.append("\n");
         
         // Deductions Section
         emailBody.append("───────────────────────────────────────────────────────────\n");
         emailBody.append("                        DEDUCTIONS                         \n");
         emailBody.append("───────────────────────────────────────────────────────────\n");
-        emailBody.append(String.format("%-30s %15s\n", "Provident Fund (PF)", "₹" + formatAmount(payslip.getProvidentFund())));
-        emailBody.append(String.format("%-30s %15s\n", "Professional Tax", "₹" + formatAmount(payslip.getProfessionalTax())));
-        emailBody.append(String.format("%-30s %15s\n", "Income Tax (TDS)", "₹" + formatAmount(payslip.getIncomeTax())));
+        emailBody.append(String.format("%-30s %15s\n", "Provident Fund (PF)", "$" + formatAmount(payslip.getProvidentFund())));
+        emailBody.append(String.format("%-30s %15s\n", "Professional Tax", "$" + formatAmount(payslip.getProfessionalTax())));
+        emailBody.append(String.format("%-30s %15s\n", "Income Tax (TDS)", "$" + formatAmount(payslip.getIncomeTax())));
         if (payslip.getOtherDeductions().compareTo(java.math.BigDecimal.ZERO) > 0) {
-            emailBody.append(String.format("%-30s %15s\n", "Other Deductions", "₹" + formatAmount(payslip.getOtherDeductions())));
+            emailBody.append(String.format("%-30s %15s\n", "Other Deductions", "$" + formatAmount(payslip.getOtherDeductions())));
         }
         emailBody.append("                                               ───────────\n");
-        emailBody.append(String.format("%-30s %15s\n", "TOTAL DEDUCTIONS", "₹" + formatAmount(payslip.getTotalDeductions())));
+        emailBody.append(String.format("%-30s %15s\n", "TOTAL DEDUCTIONS", "$" + formatAmount(payslip.getTotalDeductions())));
         emailBody.append("\n");
         
         // Net Salary Section
         emailBody.append("═══════════════════════════════════════════════════════════\n");
-        emailBody.append(String.format("%-30s %15s\n", "NET SALARY", "₹" + formatAmount(payslip.getNetSalary())));
+        emailBody.append(String.format("%-30s %15s\n", "NET SALARY", "$" + formatAmount(payslip.getNetSalary())));
         emailBody.append("═══════════════════════════════════════════════════════════\n\n");
         
         // Footer

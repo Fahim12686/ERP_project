@@ -244,7 +244,7 @@ export default function Budgeting() {
               </div>
               <div className="grid grid-cols-3 gap-4">
                 <div className="space-y-2">
-                  <Label>Planned Amount (₹) *</Label>
+                  <Label>Planned Amount (USD) *</Label>
                   <Input 
                     type="number" 
                     value={form.plannedAmount} 

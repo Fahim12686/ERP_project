@@ -117,7 +117,7 @@ export default function Reports() {
         'Invoice Number': item.invoiceNumber || 'N/A',
         'Customer Name': item.customerName || 'N/A',
         'Date': item.date,
-        'Amount (INR)': item.amount,
+        'Amount (USD)': item.amount,
         'Status': item.status || 'N/A'
       }));
 
@@ -144,7 +144,7 @@ export default function Reports() {
         'Title': item.title || 'N/A',
         'Category': item.category || 'N/A',
         'Date': item.date,
-        'Amount (INR)': item.amount
+        'Amount (USD)': item.amount
       }));
 
       const filename = `expense-report-${currentDate}.csv`;

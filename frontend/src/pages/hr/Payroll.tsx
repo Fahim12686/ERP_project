@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
-import { Banknote, Download, Receipt, Plus, RefreshCw, Search, Filter, Calendar, Users, TrendingUp, DollarSign, IndianRupee, CheckCircle } from 'lucide-react';
+import { Banknote, Download, Receipt, Plus, RefreshCw, Search, Filter, Calendar, Users, TrendingUp, DollarSign, CheckCircle } from 'lucide-react';
 import { financeService, hrService, formatCurrency } from '@/services/apiService';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
@@ -359,10 +359,10 @@ export default function Payroll() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-muted-foreground">Total Gross</p>
-                  <p className="text-2xl font-bold text-blue-600">₹{payrollStats.totalGross.toLocaleString('en-IN')}</p>
+                  <p className="text-2xl font-bold text-blue-600">${payrollStats.totalGross.toLocaleString('en-US')}</p>
                   <p className="text-xs text-muted-foreground h-4">&nbsp;</p>
                 </div>
-                <IndianRupee className="h-8 w-8 text-blue-500" />
+                <DollarSign className="h-8 w-8 text-blue-500" />
               </div>
             </CardContent>
           </Card>
@@ -374,7 +374,7 @@ export default function Payroll() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-muted-foreground">Total Net</p>
-                  <p className="text-2xl font-bold text-green-600">₹{payrollStats.totalNet.toLocaleString('en-IN')}</p>
+                  <p className="text-2xl font-bold text-green-600">${payrollStats.totalNet.toLocaleString('en-US')}</p>
                   <p className="text-xs text-muted-foreground h-4">&nbsp;</p>
                 </div>
                 <TrendingUp className="h-8 w-8 text-green-500" />
@@ -390,7 +390,7 @@ export default function Payroll() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-muted-foreground">Avg Salary</p>
-                  <p className="text-2xl font-bold text-purple-600">₹{payrollStats.avgSalary.toLocaleString('en-IN')}</p>
+                  <p className="text-2xl font-bold text-purple-600">${payrollStats.avgSalary.toLocaleString('en-US')}</p>
                   <p className="text-xs text-muted-foreground h-4">&nbsp;</p>
                 </div>
                 <Users className="h-8 w-8 text-purple-500" />

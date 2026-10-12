@@ -87,8 +87,8 @@ public class PdfGenerationService {
 
             // Enhanced Header row with gradient-like effect
             addProfessionalHeaderCell(salaryTable, "SALARY COMPONENTS", PRIMARY_BLUE, WHITE);
-            addProfessionalHeaderCell(salaryTable, "EARNINGS (₹)", SUCCESS_GREEN, WHITE);
-            addProfessionalHeaderCell(salaryTable, "DEDUCTIONS (₹)", WARNING_ORANGE, WHITE);
+            addProfessionalHeaderCell(salaryTable, "EARNINGS (USD)", SUCCESS_GREEN, WHITE);
+            addProfessionalHeaderCell(salaryTable, "DEDUCTIONS (USD)", WARNING_ORANGE, WHITE);
 
             // Earnings section with alternating row colors
             boolean isAlternate = false;
@@ -152,7 +152,7 @@ public class PdfGenerationService {
                 FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12, WHITE));
             netSalaryLabel.setAlignment(Element.ALIGN_CENTER);
             
-            Paragraph netSalaryAmount = new Paragraph("₹ " + formatAmount(payslip.getNetSalary()), 
+            Paragraph netSalaryAmount = new Paragraph("$ " + formatAmount(payslip.getNetSalary()), 
                 FontFactory.getFont(FontFactory.HELVETICA_BOLD, 18, WHITE));
             netSalaryAmount.setAlignment(Element.ALIGN_CENTER);
             netSalaryAmount.setSpacingBefore(5);
@@ -310,13 +310,13 @@ public class PdfGenerationService {
         descCell.setBackgroundColor(backgroundColor);
         descCell.setBorder(Rectangle.NO_BORDER);
         
-        PdfPCell earningsCell = new PdfPCell(new Phrase(earnings != null ? "₹" + formatAmount(earnings) : "-", font));
+        PdfPCell earningsCell = new PdfPCell(new Phrase(earnings != null ? "$" + formatAmount(earnings) : "-", font));
         earningsCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
         earningsCell.setPadding(6);
         earningsCell.setBackgroundColor(backgroundColor);
         earningsCell.setBorder(Rectangle.NO_BORDER);
         
-        PdfPCell deductionsCell = new PdfPCell(new Phrase(deductions != null ? "₹" + formatAmount(deductions) : "-", font));
+        PdfPCell deductionsCell = new PdfPCell(new Phrase(deductions != null ? "$" + formatAmount(deductions) : "-", font));
         deductionsCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
         deductionsCell.setPadding(6);
         deductionsCell.setBackgroundColor(backgroundColor);
@@ -334,7 +334,7 @@ public class PdfGenerationService {
         labelCell.setBorder(Rectangle.NO_BORDER);
         labelCell.setHorizontalAlignment(Element.ALIGN_CENTER);
         
-        PdfPCell amountCell = new PdfPCell(new Phrase("₹" + formatAmount(amount), 
+        PdfPCell amountCell = new PdfPCell(new Phrase("$" + formatAmount(amount), 
             FontFactory.getFont(FontFactory.HELVETICA_BOLD, 11, textColor)));
         amountCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
         amountCell.setPadding(8);
